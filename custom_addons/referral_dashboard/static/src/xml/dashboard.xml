@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    
+    <t t-name="referral_dashboard.DashboardTemplate" owl="1">
+        <div class="o_referral_dashboard p-4" style="background-color: #f9f9f9; min-height: 100vh;">
+            <h2 class="mb-4 text-primary"><i class="fa fa-line-chart me-2"/> Dashboard Analitik Referral</h2>
+            
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card text-white bg-primary shadow-sm mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title text-uppercase fw-bold"><i class="fa fa-users me-2"/> Total Jumlah Referral</h6>
+                            <h1 class="card-text display-5 fw-bold" t-esc="kpiData.totalReferrals"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-white bg-success shadow-sm mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title text-uppercase fw-bold"><i class="fa fa-money me-2"/> Total Pendapatan Referral</h6>
+                            <h1 class="card-text display-5 fw-bold" t-esc="kpiData.totalRevenue"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-dark bg-warning shadow-sm mb-3">
+                        <div class="card-body">
+                            <h6 class="card-title text-uppercase fw-bold"><i class="fa fa-star me-2"/> Total Poin Dikeluarkan</h6>
+                            <h1 class="card-text display-5 fw-bold" t-esc="kpiData.totalPoints"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h4 class="m-0 font-weight-bold text-dark"><i class="fa fa-trophy text-warning me-2"/> Top Referrer</h4>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped m-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="px-4 py-3">Peringkat</th>
+                                    <th class="py-3">Nama Member</th>
+                                    <th class="py-3 text-center">Jumlah Referral Sukses</th>
+                                    <th class="py-3 text-center">Total Poin Diperoleh</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="topReferrers" t-as="referrer" t-key="referrer.id">
+                                    <tr>
+                                        <td class="px-4 fw-bold">#<t t-esc="referrer_index + 1"/></td>
+                                        <td t-esc="referrer.name"/>
+                                        <td class="text-center">
+                                            <span class="badge rounded-pill bg-info text-dark fs-6" t-esc="referrer.referrals"/>
+                                        </td>
+                                        <td class="text-center fw-bold text-success" t-esc="referrer.points"/>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </t>
+
+</templates>
